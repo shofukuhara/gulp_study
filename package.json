@@ -1,0 +1,11 @@
+{
+  "name": "gulp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/shofukuhara/gulp_study.git",
+  "author": "shofukuhara <sho.fukuhara0213@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
