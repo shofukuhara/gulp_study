@@ -1,4 +1,4 @@
-const { src, dest } = require("gulp");
+const { src, dest, watch } = require("gulp");
 const loadPlugins = require("gulp-load-plugins");
 const $ = loadPlugins();
 const pkg = require("./package.json");
@@ -6,6 +6,8 @@ const conf = pkg["gulp-config"];
 const sizes = conf.sizes;
 const sass = require("gulp-sass")(require("sass"));
 const autoprefixer = require("autoprefixer");
+const browserSync = require('browser-sync');
+const server = browserSync.create();
 
 function item(done) {
   for (let size of sizes) {
@@ -31,12 +33,21 @@ function style() {
   return src("./src/sass/main.scss")
     .pipe($.sourcemaps.init())
     .pipe(sass())
-    .pipe($.postcss([
-      autoprefixer()
-    ]))
+    .pipe($.postcss([autoprefixer()]))
     .pipe($.sourcemaps.write("."))
     .pipe(dest("./dist/css"));
 }
 
+function startAppServer() {
+  server.init({
+    server: {
+      baseDir: "./dist"
+    }
+  });
+  watch("./src/**/*.scss", style);
+  watch("./src/**/*.scss").on('change', server.reload);
+}
+
 exports.item = item;
 exports.style = style;
+exports.serve = startAppServer;

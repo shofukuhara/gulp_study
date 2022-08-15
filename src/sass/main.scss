@@ -2,8 +2,10 @@ h1 {
   color: blue;
   font-size: 1rem;
   transition: all .3s;
+  background-color: yellow;
   &:hover {
     transform: translateX(50px);
     color: red;
+    font-size: 2rem;
   }
 }

@@ -2,9 +2,11 @@ h1 {
   color: blue;
   font-size: 1rem;
   transition: all 0.3s;
+  background-color: yellow;
 }
 h1:hover {
   transform: translateX(50px);
   color: red;
+  font-size: 2rem;
 }
 /*# sourceMappingURL=main.css.map */
